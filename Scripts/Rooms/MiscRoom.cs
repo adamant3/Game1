@@ -17,6 +17,7 @@ namespace DungeonCrawler.Rooms
         private bool _challengeCompleted = false;
         private float _challengeTimer = 0f;
         private const float ChallengeTimeLimitSeconds = 30f;
+        private const float ChallengeGracePeriod = 5f;
 
         [Export] public PackedScene? SpringScene { get; set; }
         [Export] public PackedScene? ChestScene { get; set; }
@@ -95,7 +96,7 @@ namespace DungeonCrawler.Rooms
                 _challengeTimer += (float)delta;
 
                 // If time runs out without clearing, force-clear (no bonus).
-                if (_challengeTimer > ChallengeTimeLimitSeconds + 5f && !IsCleared)
+                if (_challengeTimer > ChallengeTimeLimitSeconds + ChallengeGracePeriod && !IsCleared)
                 {
                     GD.Print("[MiscRoom] Time limit expired – challenge failed.");
                     TriggerRoomCleared();

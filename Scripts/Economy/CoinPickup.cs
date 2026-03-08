@@ -76,9 +76,9 @@ namespace DungeonCrawler.Economy
         public void OnPickup(Godot.Node collector)
         {
             GD.Print($"[CoinPickup] {Amount} coin(s) picked up by {collector.Name}.");
+            // AddCoins is responsible for updating the coin total and raising events.
             if (collector.HasMethod("AddCoins"))
                 collector.Call("AddCoins", Amount);
-            GameEvents.RaisePlayerCoinsChanged(Amount);
             QueueFree();
         }
 

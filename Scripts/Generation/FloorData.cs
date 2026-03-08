@@ -44,8 +44,10 @@ namespace DungeonCrawler.Generation
         public int TotalRooms => Rooms.Count;
         public int ClearedRooms => Rooms.FindAll(r => r.IsCleared).Count;
 
-        // Portal room doesn't count toward completion.
-        public bool IsComplete => ClearedRooms >= TotalRooms - 1;
+        // Portal room doesn't count toward completion; it must remain uncleared.
+        public bool IsComplete =>
+            ClearedRooms >= TotalRooms - 1 &&
+            (Rooms.Find(r => r.Id == PortalRoomId)?.IsCleared == false);
 
         public RoomData? GetRoom(int id) => Rooms.Find(r => r.Id == id);
         public RoomData? GetRoomAtGrid(int x, int y) => Rooms.Find(r => r.GridX == x && r.GridY == y);

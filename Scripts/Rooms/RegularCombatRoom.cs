@@ -14,6 +14,8 @@ namespace DungeonCrawler.Rooms
         [Export] public int MinEnemies { get; set; } = 2;
         [Export] public int MaxEnemies { get; set; } = 5;
         [Export] public bool HasBreakableCrates { get; set; } = true;
+        [Export] public float ManaPickupChance { get; set; } = 0.5f;
+        [Export] public float BonusItemChance { get; set; } = 0.15f;
 
         [Export] public PackedScene? EnemyScene { get; set; }
         [Export] public PackedScene? CrateScene { get; set; }
@@ -87,7 +89,7 @@ namespace DungeonCrawler.Rooms
             }
 
             // Spawn a mana pickup (represented as a special coin with higher value).
-            if (CoinScene != null && _rng.NextDouble() < 0.5)
+            if (CoinScene != null && _rng.NextDouble() < ManaPickupChance)
             {
                 var mana = CoinScene.Instantiate<Node2D>();
                 var container = _itemContainer ?? this;
@@ -97,8 +99,8 @@ namespace DungeonCrawler.Rooms
                     mana.Call("Initialize", 5);
             }
 
-            // Small chance (15%) for a bonus item drop.
-            if (ItemScene != null && _rng.NextDouble() < 0.15)
+            // Small chance for a bonus item drop.
+            if (ItemScene != null && _rng.NextDouble() < BonusItemChance)
                 SpawnItem(ItemScene, GlobalPosition);
         }
 

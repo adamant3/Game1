@@ -134,7 +134,7 @@ namespace DungeonCrawler.Rooms
             IsCleared = true;
             UnlockDoors();
             OnRoomCleared();
-            EmitSignal(SignalName.RoomCleared, _roomData?.Id ?? 0);
+            EmitSignal(SignalName.RoomCleared, _roomData?.Id ?? -1);
             Core.GameEvents.RaiseRoomCleared(_roomData?.UniqueId ?? Name);
             GD.Print($"[BaseRoom] Room '{Name}' cleared.");
         }

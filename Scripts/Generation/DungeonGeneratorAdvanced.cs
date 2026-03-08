@@ -13,6 +13,7 @@ namespace DungeonCrawler.Generation
         private const int MIN_ROOMS = 10;
         private const int MAX_ROOMS = 30;
         private const int GRID_SIZE = 10;
+        private const double BRANCH_PROBABILITY = 0.35;
 
         // 0 = empty, 1 = room, 2 = start, 3 = portal
         private int[,] _grid = new int[GRID_SIZE, GRID_SIZE];
@@ -64,7 +65,7 @@ namespace DungeonCrawler.Generation
                 }
 
                 // Occasionally jump to a random existing room to create branching.
-                if (_rng.NextDouble() < 0.35)
+                if (_rng.NextDouble() < BRANCH_PROBABILITY)
                 {
                     var r = _rooms[_rng.Next(_rooms.Count)];
                     curX = r.GridX;

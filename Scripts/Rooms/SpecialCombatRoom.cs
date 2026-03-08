@@ -14,6 +14,8 @@ namespace DungeonCrawler.Rooms
         [Export] public PackedScene? SupportEnemyScene { get; set; }
         [Export] public PackedScene? CoinScene { get; set; }
         [Export] public PackedScene? ConsumableScene { get; set; }
+        [Export] public int MinSupportEnemies { get; set; } = 1;
+        [Export] public int MaxSupportEnemies { get; set; } = 2;
 
         private static readonly Random _rng = new Random();
 
@@ -55,7 +57,7 @@ namespace DungeonCrawler.Rooms
         private void SpawnSupportEnemies()
         {
             if (SupportEnemyScene == null) return;
-            int count = _rng.Next(1, 3); // 1 or 2 support enemies
+            int count = _rng.Next(MinSupportEnemies, MaxSupportEnemies + 1);
             float[] angles = { -45f, 45f };
             for (int i = 0; i < count; i++)
             {

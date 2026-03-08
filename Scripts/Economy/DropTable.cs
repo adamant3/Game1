@@ -26,6 +26,7 @@ namespace DungeonCrawler.Economy
         private static readonly Dictionary<string, List<DropEntry>> _tables =
             new Dictionary<string, List<DropEntry>>();
 
+        private const float COIN_SCALE_PER_FLOOR = 0.1f;
         private static readonly Random _rng = new Random();
 
         // ── Static constructor – register predefined tables ────────────────────
@@ -130,7 +131,7 @@ namespace DungeonCrawler.Economy
         /// </summary>
         public static int RollCoinAmount(string enemyType, int floor)
         {
-            float multiplier = 1f + floor * 0.1f;
+            float multiplier = 1f + floor * COIN_SCALE_PER_FLOOR;
 
             int baseMin, baseMax;
             switch (enemyType.ToLower())

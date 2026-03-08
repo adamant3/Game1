@@ -13,13 +13,14 @@ namespace DungeonCrawler.NPCs
     public partial class Gambler : NPCBase
     {
         [Export] public int GambleCost { get; set; } = 5;
+        [Export] public float BuffChance { get; set; } = 0.60f;
 
         private static readonly Random _rng = new Random();
 
         // ── Buff / nerf name pools ─────────────────────────────────────────────
 
         private static readonly string[] BuffNames =
-            { "SpeedBuff", "DamageBuff", "CritBuff", "ArmorBuff", "LuckBuff" };
+            { "SpeedBuff", "DamageAuraBuff", "CritBuff", "ArmorBuff", "LuckBuff" };
 
         private static readonly string[] NerfNames =
             { "SlowNerf", "WeakenNerf", "BlindNerf", "CurseNerf" };
@@ -73,8 +74,8 @@ namespace DungeonCrawler.NPCs
             }
         }
 
-        /// <summary>Returns true (buff) with 60% probability; false (nerf) with 40%.</summary>
-        public bool GetGambleOutcome() => _rng.NextDouble() < 0.60;
+        /// <summary>Returns true (buff) with <see cref="BuffChance"/> probability; false (nerf) otherwise.</summary>
+        public bool GetGambleOutcome() => _rng.NextDouble() < BuffChance;
 
         // ── Buff application ───────────────────────────────────────────────────
 
@@ -85,12 +86,12 @@ namespace DungeonCrawler.NPCs
 
             BuffBase? buff = chosen switch
             {
-                "SpeedBuff"  => new SpeedBuff(),
-                "DamageBuff" => new DamageAuraBuff(),
-                "CritBuff"   => new CritBuff(),
-                "ArmorBuff"  => new ArmorBuff(),
-                "LuckBuff"   => new LuckBuff(),
-                _            => new SpeedBuff()
+                "SpeedBuff"     => new SpeedBuff(),
+                "DamageAuraBuff"=> new DamageAuraBuff(),
+                "CritBuff"      => new CritBuff(),
+                "ArmorBuff"     => new ArmorBuff(),
+                "LuckBuff"      => new LuckBuff(),
+                _               => new SpeedBuff()
             };
 
             player.AddChild(buff);
