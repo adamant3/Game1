@@ -87,4 +87,18 @@ namespace DungeonCrawler.Nerfs
                 NerfId, StatType.AttackSpeed, -0.50f, ModifierType.Flat, Duration, NerfId));
         }
     }
+
+    /// <summary>Curse nerf: -20% luck and -15% damage for 6 seconds.</summary>
+    public partial class CurseNerf : NerfBase
+    {
+        public CurseNerf() { NerfName = "Cursed"; Duration = 6f; }
+
+        protected override void ApplyModifiers(CharacterStats stats)
+        {
+            stats.AddModifier(new StatModifier(
+                NerfId, StatType.Luck,   -0.20f, ModifierType.Flat,       Duration, NerfId));
+            stats.AddModifier(new StatModifier(
+                NerfId, StatType.Damage, -0.15f, ModifierType.Percentage, Duration, NerfId));
+        }
+    }
 }

@@ -102,4 +102,41 @@ namespace DungeonCrawler.Buffs
                 BuffId, StatType.CritChance, 0.20f, ModifierType.Flat, Duration, BuffId));
         }
     }
+
+    /// <summary>Crit buff alias – same as CritSurgeBuff for Gambler compatibility.</summary>
+    public partial class CritBuff : BuffBase
+    {
+        public CritBuff() { BuffName = "Crit Boost"; Duration = 5f; }
+
+        protected override void ApplyModifiers(CharacterStats stats)
+        {
+            stats.AddModifier(new StatModifier(
+                BuffId, StatType.CritChance, 0.20f, ModifierType.Flat, Duration, BuffId));
+        }
+    }
+
+    /// <summary>Damage buff alias – same as DamageAuraBuff for Gambler compatibility.</summary>
+    public partial class DamageBuff : BuffBase
+    {
+        public DamageBuff() { BuffName = "Damage Boost"; Duration = 10f; }
+
+        protected override void ApplyModifiers(CharacterStats stats)
+        {
+            stats.AddModifier(new StatModifier(
+                BuffId, StatType.Damage, 0.50f, ModifierType.Percentage, Duration, BuffId));
+        }
+    }
+
+    /// <summary>Luck buff: +10% drop luck for 12 seconds (flat bonus stored on Luck stat).</summary>
+    public partial class LuckBuff : BuffBase
+    {
+        public LuckBuff() { BuffName = "Lucky"; Duration = 12f; }
+
+        protected override void ApplyModifiers(CharacterStats stats)
+        {
+            // Luck is stored as a flat value; +0.10 = +10% effective luck.
+            stats.AddModifier(new StatModifier(
+                BuffId, StatType.Luck, 0.10f, ModifierType.Flat, Duration, BuffId));
+        }
+    }
 }
