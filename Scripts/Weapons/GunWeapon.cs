@@ -115,8 +115,8 @@ namespace DungeonCrawler.Weapons
         {
             if (_isReloading) return;
 
-            float savedSpread = SpreadAngle;
-            float savedPellets = PelletsPerShot;
+            float savedSpread  = SpreadAngle;
+            int   savedPellets = PelletsPerShot;
 
             SpreadAngle    = savedSpread * 0.2f;
             PelletsPerShot = 1;
@@ -127,7 +127,7 @@ namespace DungeonCrawler.Weapons
                 0f);
 
             SpreadAngle    = savedSpread;
-            PelletsPerShot = (int)savedPellets;
+            PelletsPerShot = savedPellets;
 
             GD.Print("[GunWeapon] Aimed shot fired");
         }

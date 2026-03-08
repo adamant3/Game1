@@ -1,0 +1,6 @@
+/home/runner/work/Game1/Game1/.godot/mono/temp/obj/Debug/Game1.csproj.AssemblyReference.cache
+/home/runner/work/Game1/Game1/.godot/mono/temp/obj/Debug/Game1.GeneratedMSBuildEditorConfig.editorconfig
+/home/runner/work/Game1/Game1/.godot/mono/temp/obj/Debug/Game1.AssemblyInfoInputs.cache
+/home/runner/work/Game1/Game1/.godot/mono/temp/obj/Debug/Game1.AssemblyInfo.cs
+/home/runner/work/Game1/Game1/.godot/mono/temp/obj/Debug/Game1.csproj.CoreCompileInputs.cache
+/home/runner/work/Game1/Game1/.godot/mono/temp/obj/Debug/Game1.sourcelink.json
