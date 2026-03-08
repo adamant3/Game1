@@ -10,7 +10,7 @@
         "projectUniqueName": "/home/runner/work/Game1/Game1/Game1.csproj",
         "projectName": "Game1",
         "projectPath": "/home/runner/work/Game1/Game1/Game1.csproj",
-        "packagesPath": "/home/runner/.nuget/packages/",
+        "packagesPath": "/tmp/codeql-scratch-935eaed640ee6f3e/dbs/csharp/working/packages",
         "outputPath": "/home/runner/work/Game1/Game1/.godot/mono/temp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
